@@ -1,0 +1,114 @@
+*정렬(오름차순)
+
+1) 버블 정렬 : 처음부터 이웃한 것끼리 비교
+2) 선택 정렬 : 하나를 고정하고 다 비교, 그 다음 것 고정하고 다 비교
+3) 삽입 정렬 : 먼저 가장 작은 값을 찾은 뒤 왼쪽에 있는 것들을 비교, 작은 값들을 왼쪽에 놓기
+
+
+
+* 나이 26명
+  int ages [] = new int [26];
+
+  이름 26명
+  String names [] = new String [26];
+
+  주소 26명
+  String addrs [] = new String [26];
+
+
+  class Student{
+	//멤버변수 = Field = 전역변수 = 인스턴스 변수
+	int age;
+	String name;
+	String addr;
+ }
+
+  Student st = new Student();  //이게 만들어지는 순간 age,name,addr 모두 초기화
+  st.age=28;
+  st.name="최동철";
+  st.addr="서울";
+
+
+  -> Student를 26개 관리할 수 있는 배열 선언한다.
+
+     Student [] stArr = new Student [26];
+     
+     for(int i=0; i<stArr.length; i++){
+	stArr[i] = new Student();
+	stArr[i].age = 40;
+	stArr[i].name = "이효리";
+	stArr[i].addr = "제주도";
+     }
+
+
+
+
+
+
+
+*2차원 배열
+  ex) int a [] [] = {{1,2,3,4},{2,4,6,7},{3,5,7,9}};
+	-> 여기 세 개는 행
+
+
+  2차원 배열에서 '배열이름.length'를 구하면 행의 길이가 나옴
+  '배열이름[행 번지수].length : 행 번지수의 열의 길이가 나옴
+  행마다 길이가 다를 수 있음
+  
+  **int [] [] a = new int [3] [] -> 행은 꼭 생성해야 하지만 열은 생성 안해도 됨, 행마다 열 개수 다르니깐
+				 -> 그 다음 행마다 1차원 배열을 만들면 됨
+					ex) a[0] = new int [2];  -> 1행 2열
+					    a[1] = new int [5];  -> 2행 5열
+					    a[2] = new int [1];  -> 3행 1열
+
+
+
+
+
+
+*생성자(특별한 method)
+
+1) 반드시 method 이름과 class 이름이 같고 method 이름이 대문자로 시작
+2) returnType 자리가 없음 : modifier class이름(변수){}
+3) 객체가 생성되는 시점에 딱 한 번 호출
+4) 프로그래머가 생성자를 하나도 작성하지 않으면 default 생성자가 만들어진다. : modifier class이름(){}
+
+   ->생성자 앞  modifier는 클래스의 modifier를 따라감(default 아니면 public)
+
+5)Overloading 가능(인수가 달라야 함)
+
+
+class Test{
+	public Test(){
+		this(값...);
+	}
+	public Test(int i){
+		
+	}
+	public Test(String str){
+		this("0");
+	}
+}
+
+ new Test();  -> 첫번째 생성자가 호출
+
+ new class이름(값, 값...);
+	여개서 class이름은 생성자
+
+ ex) new Test(5); -> 가능 : 두번째
+     new Test(5.5); ->실패: 가능한 값이 없어서
+
+
+ new Test(); 만들어지면서 생성자를 호출
+ 반드시 첫번째 생성자를.
+
+ 첫번째 생성자가 생성된 시점에 다른 생성자를 호출. (this(값,값...))
+
+
+
+
+ 
+*this : 생성된 현재 객체
+1) this.변수이름;  :전역변수
+2) this.method이름(값,값...);   :하나의 claa내에서 다른 method호출
+3) this(값,값...);    :같은 class 내에서 다른 생성자 호출(생성자 구현부 첫 줄에서만 사용)
